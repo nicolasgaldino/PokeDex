@@ -1,3 +1,3 @@
 ## PokeDex
 
-Clique <a href="#">aqui</a> para acessá-la.
+Clique <a href="#" target="_blank" rel="noreferrer">aqui</a> para acessá-la.
