@@ -28,7 +28,6 @@ const renderPokemon = async (pokemon) => {
     frstAttck.innerHTML = responseFetch["moves"]["0"]["move"]["name"];
     scndAttck.innerHTML = responseFetch["moves"]["1"]["move"]["name"];
     pokeType.innerHTML = responseFetch["types"]["0"]["type"]["name"];
-    searchPokemon = pokemon
   } else {
     spinnerContainer.style.display = "block";
     pokeImg.style.display = "none";
@@ -47,6 +46,7 @@ const handleSubmit = (event) => {
   const formattedInput = pokeInput.value.toLowerCase().trim();
   renderPokemon(formattedInput);
   pokeInput.value = "";
+  searchPokemon = formattedInput
 };
 
 const previusPokemon = () => {
