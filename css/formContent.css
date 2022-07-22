@@ -1,0 +1,15 @@
+.mainContainer {
+  text-align: center;
+}
+
+.pokeInput {
+  max-width: 100%;
+  width: 21.875rem;
+  height: 2.1875rem;
+  margin-top: 3.125rem;
+  text-align: center;
+  border-radius: 0.3125rem;
+  font-weight: 600;
+  letter-spacing: 0.0625rem;
+  outline: none;
+}
