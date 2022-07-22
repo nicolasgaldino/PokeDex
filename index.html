@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/script.js" defer></script>
+    <link
+      rel="shortcut icon"
+      href="img/favicon-16x16.png"
+      type="image/x-icon"
+    />
+    <title>PokeDex</title>
+  </head>
+  <body>
+    <header class="headerContainer">
+      <img src="img/logo.svg" alt="Logo PokeDex" class="pokeLogo" />
+    </header>
+    <main class="mainContainer">
+      <form class="pokeForm">
+        <input
+          type="search"
+          class="pokeInput"
+          placeholder="Nome ou Número do Pokemon"
+          required
+        />
+      </form>
+      <div class="pokeContainer">
+        <h1 class="pokeTitle">
+          <span class="pokeNumber"></span> -
+          <span class="pokeName"></span> - 
+          <span class="pokeType"></span>
+        </h1>
+        <div class="pokeCard">
+        <div class="spinnerContainer">
+          <div class="spinner">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+          <img
+            src=""
+            alt="Pokemon"
+            class="pokeImg"
+          />
+          <div class="atacksContainer">
+            <h2 class="atacksTitle">Ataques:</h2>
+            <p class="atacksName frstAttck"></p>
+            <p class="atacksName scndAttck"></p>
+          </div>
+        </div>
+      </div>
+      <div class="buttonContainer">
+        <button class="prevBtn button">Anterior</button>
+        <button class="nextBtn button">Próximo</button>
+      </div>
+    </main>
+  </body>
+</html>

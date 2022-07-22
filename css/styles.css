@@ -1,0 +1,192 @@
+:root {
+  --primaryColor: #aaaaaa;
+  --secondaryColor: #3a444d;
+  --tertiaryColor: #333333;
+  --quaternaryColor: #888888;
+  --quinaryColor: #000000;
+  --senaryColor: #444444;
+  --septenaryColor: #6ab7f5;
+  --octonaryColor: #ffffff;
+  --nonnariusColor: #222222;
+  --decenaryColor: #ff0000;
+  --eleventhColor: #00000046;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Oxanium", cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  padding: 3.125rem;
+  background: url("../img/pokemon-background.png");
+  background-color: var(--eleventhColor);
+  background-blend-mode: color;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokeLogo {
+  width: 31.25rem;
+  max-width: 100%;
+}
+
+.mainContainer {
+  text-align: center;
+}
+
+.pokeInput {
+  max-width: 100%;
+  width: 21.875rem;
+  height: 2.1875rem;
+  margin-top: 3.125rem;
+  text-align: center;
+  border-radius: 0.3125rem;
+  font-weight: 600;
+  letter-spacing: 0.0625rem;
+  outline: none;
+}
+
+.pokeContainer {
+  height: 350px;
+}
+
+.pokeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.atacksContainer {
+  width: 250px;
+  height: auto;
+  margin-top: 1.25rem;
+  text-align: left;
+  backdrop-filter: blur(15px);
+  padding: 0.3125rem;
+  border-radius: 0.3125rem;
+  border: 0.125rem solid var(--quinaryColor);
+}
+
+.atacksTitle {
+  letter-spacing: 0.0625rem;
+  font-size: 2.1875rem;
+}
+
+.atacksName {
+  font-weight: 500;
+  letter-spacing: 0.0625rem;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.pokeImg {
+  object-fit: fill;
+  max-width: 100%;
+  width: auto;
+  height: 11.25rem;
+  margin-top: 0.625rem;
+}
+
+.pokeTitle {
+  cursor: default;
+  max-width: 100%;
+  margin-top: 3.125rem;
+  text-transform: capitalize;
+}
+
+.pokeNumber {
+  color: var(--decenaryColor);
+}
+
+.pokeName {
+  color: var(--octonaryColor);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 3.125rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.button {
+  color: var(--octonaryColor);
+  background-color: var(--quinaryColor);
+  max-width: 100%;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0.3125rem;
+  font-weight: 600;
+  letter-spacing: 0.0625rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.button:active {
+  background-color: var(--decenaryColor);
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.spinner {
+  width: 70px;
+  height: 70px;
+  position: relative;
+}
+
+.dot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.dot::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--octonaryColor);
+}
+
+.dot {
+  animation: spin 1.8s infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dot:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.dot:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+.dot:nth-child(5) {
+  animation-delay: 400ms;
+}
