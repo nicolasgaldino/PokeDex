@@ -20,6 +20,8 @@ const fetchPokeAPI = async (pokemon) => {
 };
 
 const renderPokemon = async (pokemon) => {
+  spinnerContainer.style.display = "block";
+  pokeImg.style.display = "none";
   const responseFetch = await fetchPokeAPI(pokemon);
   if(responseFetch) {
     pokeImg.src = responseFetch["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"];
@@ -28,6 +30,8 @@ const renderPokemon = async (pokemon) => {
     frstAttck.innerHTML = responseFetch["moves"]["0"]["move"]["name"];
     scndAttck.innerHTML = responseFetch["moves"]["1"]["move"]["name"];
     pokeType.innerHTML = responseFetch["types"]["0"]["type"]["name"];
+    spinnerContainer.style.display = "none";
+    pokeImg.style.display = "block";
   } else {
     spinnerContainer.style.display = "block";
     pokeImg.style.display = "none";
