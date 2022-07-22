@@ -190,3 +190,10 @@ body {
 .dot:nth-child(5) {
   animation-delay: 400ms;
 }
+
+/* MOBILE */
+@media (max-width: 720px) {
+  body {
+    padding: 1.25rem;
+  }
+}
