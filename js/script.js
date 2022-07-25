@@ -9,7 +9,7 @@ const pokeInput = document.querySelector(".pokeInput");
 const prevBtn = document.querySelector(".prevBtn");
 const nextBtn = document.querySelector(".nextBtn");
 const spinnerContainer = document.querySelector(".spinnerContainer");
-let searchPokemon = 1;
+let searchPokemon = 1; // variável global que recebe um valor para sempre iniciar a aplicação exibindo um pokemon
 
 const fetchPokeAPI = async (pokemon) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
@@ -17,33 +17,50 @@ const fetchPokeAPI = async (pokemon) => {
     .then((response) => response.json())
     .catch((err) => console.log(err));
   return (APIResponse);
+  // função responsável por fazer o Fetch na PokeAPI, recebendo como parâmetro o
+  // valor que será adicionado ao fim da URL para realizar a busca e converter
+  // od dados recebidos em json
+};
+
+const showRenderData = (pokeData) => {
+  pokeImg.src = pokeData["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"];
+  pokeName.innerHTML = pokeData.name;
+  pokeNumber.innerHTML = pokeData.id;
+  searchPokemon = pokeData.id;
+  frstAttck.innerHTML = pokeData["moves"]["0"]["move"]["name"];
+  scndAttck.innerHTML = pokeData["moves"]["1"]["move"]["name"];
+  pokeType.innerHTML = pokeData["types"]["0"]["type"]["name"];
+  spinnerContainer.style.display = "none";
+  pokeImg.style.display = "block";
+  // função responsável por receber os dados da API uma vez convertidos para json
+  // e exibi-los na tela, recebendo como parâmetro o retorno na API
+};
+
+const resetRenderData = () => {
+  spinnerContainer.style.display = "block";
+  pokeImg.style.display = "none";
+  pokeImg.src = "";
+  pokeName.innerHTML = "";
+  pokeNumber.innerHTML = "";
+  frstAttck.innerHTML = "";
+  scndAttck.innerHTML = "";
+  pokeType.innerHTML = "";
+};
+
+const validateData = (responseData) => {
+  if (responseData) {
+    showRenderData(responseData);
+  } else {
+    alert("Pokemon não encontrado.");
+    resetRenderData();
+  };
 };
 
 const renderPokemon = async (pokemon) => {
   spinnerContainer.style.display = "block";
   pokeImg.style.display = "none";
   const responseFetch = await fetchPokeAPI(pokemon);
-  if(responseFetch) {
-    pokeImg.src = responseFetch["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"];
-    pokeName.innerHTML = responseFetch.name;
-    pokeNumber.innerHTML = responseFetch.id;
-    searchPokemon = responseFetch.id;
-    frstAttck.innerHTML = responseFetch["moves"]["0"]["move"]["name"];
-    scndAttck.innerHTML = responseFetch["moves"]["1"]["move"]["name"];
-    pokeType.innerHTML = responseFetch["types"]["0"]["type"]["name"];
-    spinnerContainer.style.display = "none";
-    pokeImg.style.display = "block";
-  } else {
-    spinnerContainer.style.display = "block";
-    pokeImg.style.display = "none";
-    alert("Pokemon não encontrado.");
-    pokeImg.src = "";
-    pokeName.innerHTML = "";
-    pokeNumber.innerHTML = "";
-    frstAttck.innerHTML = "";
-    scndAttck.innerHTML = "";
-    pokeType.innerHTML = "";
-  }
+  validateData(responseFetch);
 };
 
 const handleSubmit = (event) => {
@@ -55,7 +72,7 @@ const handleSubmit = (event) => {
 };
 
 const previusPokemon = () => {
-  if(searchPokemon === 1) {
+  if (searchPokemon === 1) {
     searchPokemon++;
   } else {
     --searchPokemon;
