@@ -19,7 +19,7 @@ const fetchPokeAPI = async (pokemon) => {
   return (APIResponse);
   // função responsável por fazer o Fetch na PokeAPI, recebendo como parâmetro o
   // valor que será adicionado ao fim da URL para realizar a busca e converter
-  // od dados recebidos em json
+  // os dados recebidos em json
 };
 
 const showRenderData = (pokeData) => {
@@ -34,6 +34,9 @@ const showRenderData = (pokeData) => {
   pokeImg.style.display = "block";
   // função responsável por receber os dados da API uma vez convertidos para json
   // e exibi-los na tela, recebendo como parâmetro o retorno na API
+  // nesta função acessei as propriedades do objeto que retorna da API com [""]
+  // ao invés de apenas usar o '.' porque algumas dessas propriedades têm caracteres
+  // especiais e só consegui acessá-las desta forma [""]
 };
 
 const resetRenderData = () => {
@@ -45,6 +48,12 @@ const resetRenderData = () => {
   frstAttck.innerHTML = "";
   scndAttck.innerHTML = "";
   pokeType.innerHTML = "";
+  renderPokemon(1);
+  // função simples que não recebe nenhum parâmetro e é ativada apenas para limpar
+  // os elementos da tela caso reterne o erro 404 da API, ou limpar o input de 
+  // busca após encontrar o pokemon desejado e aplicar o valor 1 p a função renderPokemon
+  // assim quando o retorno da API for 404, a aplicação exibirá ao usuário o primeiro
+  // pokemon, ao invés da tela vazia sem dados
 };
 
 const validateData = (responseData) => {
@@ -54,6 +63,9 @@ const validateData = (responseData) => {
     alert("Pokemon não encontrado.");
     resetRenderData();
   };
+  // função que recebe como parâmetro o retorno da API e realiza uma simples
+  // validação do retorno alertando ao usuário caso não encontre o pokemon 
+  // solicitado ou exibindo os dados caso o encontre
 };
 
 const renderPokemon = async (pokemon) => {
@@ -61,14 +73,21 @@ const renderPokemon = async (pokemon) => {
   pokeImg.style.display = "none";
   const responseFetch = await fetchPokeAPI(pokemon);
   validateData(responseFetch);
+  // função responsável por exibir todos os dados na tela recebe como parâmetro
+  // os dados vindos da API após já terem sido tratados e corrigidos nas funções
+  // anteriores, assim exibindo-os corretamente e tendo apenas uma responsabilidade
 };
 
-const handleSubmit = (event) => {
-  event.preventDefault();
+const formattedInput = () => {
   const formattedInput = pokeInput.value.toLowerCase().trim();
   renderPokemon(formattedInput);
   pokeInput.value = "";
   searchPokemon = formattedInput
+};
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  formattedInput();
 };
 
 const previusPokemon = () => {
