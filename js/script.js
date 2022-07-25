@@ -22,6 +22,22 @@ const fetchPokeAPI = async (pokemon) => {
   // os dados recebidos em json
 };
 
+const showPokeImg = (apiReturn) => {
+  if (apiReturn) {
+    spinnerContainer.style.display = "none";
+    pokeImg.style.display = "block";
+  };
+};
+
+const showLoader = (apiReturn) => {
+  if (apiReturn) {
+    spinnerContainer.style.display = "block";
+    pokeImg.style.display = "none";
+  };
+};
+// showPokeImg showLoader funções criadas exibir o gif do pokemon, ou o spinner
+//enquanto os dados da API não chegam ambas recebem como parâmetro os dados da API
+
 const showRenderData = (pokeData) => {
   pokeImg.src = pokeData["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"];
   pokeName.innerHTML = pokeData.name;
@@ -30,8 +46,7 @@ const showRenderData = (pokeData) => {
   frstAttck.innerHTML = pokeData["moves"]["0"]["move"]["name"];
   scndAttck.innerHTML = pokeData["moves"]["1"]["move"]["name"];
   pokeType.innerHTML = pokeData["types"]["0"]["type"]["name"];
-  spinnerContainer.style.display = "none";
-  pokeImg.style.display = "block";
+  showPokeImg(pokeData);
   // função responsável por receber os dados da API uma vez convertidos para json
   // e exibi-los na tela, recebendo como parâmetro o retorno na API
   // nesta função acessei as propriedades do objeto que retorna da API com [""]
@@ -42,8 +57,6 @@ const showRenderData = (pokeData) => {
 const resetRenderData = () => {
   alert("Pokemon não encontrado.");
   renderPokemon(1);
-  spinnerContainer.style.display = "block";
-  pokeImg.style.display = "none";
   pokeImg.src = "";
   pokeName.innerHTML = "";
   pokeNumber.innerHTML = "";
@@ -63,6 +76,7 @@ const validateData = (responseData) => {
     showRenderData(responseData);
   } else {
     resetRenderData();
+    showLoader(responseData);
   };
   // função que recebe como parâmetro o retorno da API e realiza uma simples
   // validação do retorno alertando ao usuário caso não encontre o pokemon 
@@ -70,8 +84,7 @@ const validateData = (responseData) => {
 };
 
 const renderPokemon = async (pokemon) => {
-  spinnerContainer.style.display = "block";
-  pokeImg.style.display = "none";
+  showLoader(pokemon);
   const responseFetch = await fetchPokeAPI(pokemon);
   validateData(responseFetch);
   // função responsável por exibir todos os dados na tela recebe como parâmetro
