@@ -40,6 +40,8 @@ const showRenderData = (pokeData) => {
 };
 
 const resetRenderData = () => {
+  alert("Pokemon não encontrado.");
+  renderPokemon(1);
   spinnerContainer.style.display = "block";
   pokeImg.style.display = "none";
   pokeImg.src = "";
@@ -48,7 +50,7 @@ const resetRenderData = () => {
   frstAttck.innerHTML = "";
   scndAttck.innerHTML = "";
   pokeType.innerHTML = "";
-  renderPokemon(1);
+  pokeInput.value = "";
   // função simples que não recebe nenhum parâmetro e é ativada apenas para limpar
   // os elementos da tela caso reterne o erro 404 da API, ou limpar o input de 
   // busca após encontrar o pokemon desejado e aplicar o valor 1 p a função renderPokemon
@@ -60,7 +62,6 @@ const validateData = (responseData) => {
   if (responseData) {
     showRenderData(responseData);
   } else {
-    alert("Pokemon não encontrado.");
     resetRenderData();
   };
   // função que recebe como parâmetro o retorno da API e realiza uma simples
@@ -79,15 +80,22 @@ const renderPokemon = async (pokemon) => {
 };
 
 const formattedInput = () => {
-  const formattedInput = pokeInput.value.toLowerCase().trim();
-  renderPokemon(formattedInput);
+  const inputFormatted = pokeInput.value.toLowerCase().trim(); // variável que transforma os dados do input em minúsculos e remove qualquer espaço em branco, seja no início ou no final
+  renderPokemon(inputFormatted);
   pokeInput.value = "";
-  searchPokemon = formattedInput
+  searchPokemon = inputFormatted
+  // função responsável por pegar os dados inseridos no input, formatá-los
+  // e pass-alos para a função fetchPokeAPI como o parâmetro a ser inserido
+  // no final da URL e executar a busca após a busca ela limpa o input
+  // aplica o valor da busca a variável searchPokemon, deixando-o disponível
+  // para realizar outras ações em outras funções
 };
 
 const handleSubmit = (event) => {
   event.preventDefault();
   formattedInput();
+  // função que recebe os dados tratados inserido no input e aciona a função
+  // fetchPokeAPI dando início a todos os código
 };
 
 const previusPokemon = () => {
@@ -97,11 +105,16 @@ const previusPokemon = () => {
     --searchPokemon;
     renderPokemon(searchPokemon)
   };
+  // função aciona ao clicar no botão 'Anterio', para voltar um pokemon o pokemon
+  // em exibição no momento com uma simples verificação para o caso do pokemon atual
+  // nunca ficar igual a 0, ou seja, quebrar a aplicação porque dessa forma não iria
+  // encontrar o pokemon com id ou nome 0 na API
 };
 
 const nextPokemon = () => {
   searchPokemon++;
   renderPokemon(searchPokemon)
+  // função que avançar para o próximo pokemon
 };
 
 prevBtn.addEventListener("click", previusPokemon);
