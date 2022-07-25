@@ -3,10 +3,10 @@
   justify-content: center;
   gap: 3.125rem;
   flex-wrap: wrap;
-  margin-top: 3rem;
 }
 
 .button {
+  margin-top: 3.125rem;
   color: var(--white);
   background-color: var(--black);
   max-width: 100%;
