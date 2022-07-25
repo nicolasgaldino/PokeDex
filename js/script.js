@@ -27,6 +27,7 @@ const renderPokemon = async (pokemon) => {
     pokeImg.src = responseFetch["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"];
     pokeName.innerHTML = responseFetch.name;
     pokeNumber.innerHTML = responseFetch.id;
+    searchPokemon = responseFetch.id;
     frstAttck.innerHTML = responseFetch["moves"]["0"]["move"]["name"];
     scndAttck.innerHTML = responseFetch["moves"]["1"]["move"]["name"];
     pokeType.innerHTML = responseFetch["types"]["0"]["type"]["name"];
