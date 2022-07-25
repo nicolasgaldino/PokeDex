@@ -6,7 +6,7 @@
 }
 
 .button {
-  margin-top: 3.125rem;
+  margin-top: 50px;
   color: var(--white);
   background-color: var(--black);
   max-width: 100%;
@@ -20,4 +20,11 @@
 
 .button:active {
   background-color: var(--red);
+}
+
+@media (max-width: 720px) {
+  .buttonContainer {
+    padding: 3.125rem;
+    gap: 10px;
+  }
 }
