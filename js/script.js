@@ -26,7 +26,7 @@ const showRenderData = (pokeData) => {
   pokeImg.src = pokeData["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"];
   pokeName.innerHTML = pokeData.name;
   pokeNumber.innerHTML = pokeData.id;
-  searchPokemon = pokeData.id;
+  searchPokemon = pokeData.id; // a variável searchPokemon recebe o id do pokemon para que mesmo com o usuário buscando o pokemon pelo nome as funções previusPokemon e nextPokemon tenham um valor numérico para efetuar seus cálculos caso sejam ativadas
   frstAttck.innerHTML = pokeData["moves"]["0"]["move"]["name"];
   scndAttck.innerHTML = pokeData["moves"]["1"]["move"]["name"];
   pokeType.innerHTML = pokeData["types"]["0"]["type"]["name"];
@@ -95,7 +95,7 @@ const handleSubmit = (event) => {
   event.preventDefault();
   formattedInput();
   // função que recebe os dados tratados inserido no input e aciona a função
-  // fetchPokeAPI dando início a todos os código
+  // fetchPokeAPI dando início a todo o código
 };
 
 const previusPokemon = () => {
